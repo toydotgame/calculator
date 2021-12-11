@@ -91,13 +91,13 @@ public class GUI implements ActionListener {
 		output.setHorizontalAlignment(SwingConstants.RIGHT);
 		output.setForeground(Color.decode(outputTextColor));
 		output.setFont(new Font("Monospaced", Font.PLAIN, 30));
-		output.setBounds(50, 90, 380, 60);
+		output.setBounds(40, 90, 400, 60);
 		panel.add(output);
 		
 		fullEquationPreview = new JLabel();
 		fullEquationPreview.setForeground(Color.decode(outputTextColor));
 		fullEquationPreview.setFont(new Font("Monospaced", Font.PLAIN, 30));
-		fullEquationPreview.setBounds(50, 30, 380, 60);
+		fullEquationPreview.setBounds(40, 30, 400, 60);
 		panel.add(fullEquationPreview);
 		
 		screenBackground = new JLabel();

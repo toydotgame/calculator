@@ -52,6 +52,10 @@ public class Calculator {
 			equationDisplay = equation; // Doesn't show an equation preview otherwise.
 		}
 		
+		if(equationDisplay.length() > 22) {
+			equationDisplay = "\u2026" + equationDisplay.substring(equationDisplay.length() - 21);
+		}
+		
 		if(answer.endsWith(".0")) { 
 			answer = answer.substring(0, answer.length() - 2);
 		}
