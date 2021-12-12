@@ -14,6 +14,7 @@ public class Calculator {
 	static String[] operators = {
 		"*", "-", "/", "Math.pow(", ",", "Math.sqrt(", "(3.14159265358980)"
 	};
+	public static boolean debug = false;
 	
 	static void evaluate() {
 		if(equation.length() > 0) {
@@ -25,15 +26,24 @@ public class Calculator {
 			if(equation.replaceAll("\\d", "").contains("Math.pow(,Math.pow(")) {
 				finished = true;
 				GUI.output.setText("Double power error");
+				if(debug) {
+					System.out.println(equation + " = Double power error");
+				}
 			} else {
 				try {
 					Object objectOutput = engine.eval(equation);
 					answer = String.valueOf(objectOutput);
 					finished = true;
 					refresh();
+					if(debug) {
+						System.out.println(equation + " = " + answer);
+					}
 				} catch (ScriptException e) {
 					finished = true;
 					GUI.output.setText("Syntax error");
+					if(debug) {
+						System.out.println(equation + " = Syntax error");
+					}
 				}
 			}
 		}
