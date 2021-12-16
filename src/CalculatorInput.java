@@ -1,3 +1,5 @@
+import java.util.concurrent.Executors;
+
 public class CalculatorInput {
 	static String[] functions = {
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
@@ -7,6 +9,12 @@ public class CalculatorInput {
 	};
 	
 	static void input(int buttonID) {
+		if(Copier.isRunning) {
+			Main.executor.shutdownNow();
+			GUI.notificiation.setVisible(false);
+			Main.executor = Executors.newFixedThreadPool(1); // New ThreadPool needs to be created because shutdownNow() also deletes the ThreadPool.
+		}
+		
 		if(Calculator.finished) {
 			switch(buttonID) {
 				case 12: case 13: case 15: case 16:
