@@ -31,8 +31,8 @@ public class Calculator {
 				}
 			} else {
 				try {
-					Object objectOutput = engine.eval(equation);
-					answer = String.valueOf(objectOutput);
+					Object output = engine.eval(equation);
+					answer = String.valueOf(output);
 					finished = true;
 					refresh();
 					if(debug) {
@@ -59,15 +59,15 @@ public class Calculator {
 			equationDisplay = equationDisplay.replace("Math.sqrt(", "\u221A(");
 			equationDisplay = equationDisplay.replace("(3.14159265358980)", "\u03C0");
 		} else {
-			equationDisplay = equation; // Doesn't show an equation preview otherwise.
+			equationDisplay = equation; // Doesn't need any changes (the equation is most likely only numbers).
 		}
 		
 		if(equationDisplay.length() > 22) {
-			equationDisplay = "\u2026" + equationDisplay.substring(equationDisplay.length() - 21);
+			equationDisplay = "\u2026" + equationDisplay.substring(equationDisplay.length() - 21); // Effectively renders only the end of the equationDisplay String.
 		}
 		
 		if(answer.endsWith(".0")) { 
-			answer = answer.substring(0, answer.length() - 2);
+			answer = answer.substring(0, answer.length() - 2); // Sometimes JavaScript returns integers, but still feels the need to add ".0" on to the end.
 		}
 				
 		GUI.fullEquationPreview.setText(equationDisplay);
@@ -80,11 +80,10 @@ public class Calculator {
 				equation = equation.substring(0, equation.length() - 18);
 			} else if(equation.endsWith("Math.sqrt(")) {
 				equation = equation.substring(0, equation.length() - 10);
+			} else if(equation.endsWith("Math.pow(")) {
+				equation = equation.substring(0, equation.length() - 9);
 			} else {
 				equation = equation.substring(0, equation.length() - 1);
-			}
-			if(equation.endsWith("Math.pow(")) {
-				equation = equation.substring(0, equation.length() - 9);
 			}
 			refresh();
 		}

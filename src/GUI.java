@@ -15,6 +15,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 
 public class GUI implements ActionListener {
+	// Colours:
 	public static String buttonColor = "#000000";
 	public static String buttonTextColor = "#ffffff";	
 	public static String specialButtonColor = "#ff6400";
@@ -22,7 +23,7 @@ public class GUI implements ActionListener {
 	public static String backgroundColor = "#1c1c1c";
 	public static String outputColor = "#cccccc";
 	public static String outputTextColor = "#000000";
-	
+	// JObjects:
 	public static JFrame frame;
 	public static JPanel panel;
 	public static JLabel output;
@@ -54,13 +55,16 @@ public class GUI implements ActionListener {
 	public static JButton buttonAllClear;
 	public static JButton buttonCopy;
 	public static JButton buttonDecimal;
-	
 	static String[] buttonNames = {
 		"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
 		"(", ")", "+", "\u2212", /* - */ "=", "\u00D7", /* * */ "\u00F7", /* / */ "\uD835\uDCCD\u02B8", /* ^ */
 		"\u00B7", /* . */ "\u221A", /* sqrt */ "\u03C0", /* pi */
 		"\u215F\uD835\uDCCD", /* 1/x */ "\uD83D\uDCCB", /* Copy */ "DEL", "AC"
 	};
+	
+	public static void main() {
+		new GUI();
+	}
 	
 	public GUI() {
 		frame = new JFrame("Calculator");
@@ -75,7 +79,7 @@ public class GUI implements ActionListener {
 		panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(Color.decode(backgroundColor));
-		panel.setFocusable(true);
+		panel.setFocusable(true); // Due to no buttons having focus, the Panel steals focus and thus can receive keystrokes.
 		panel.addKeyListener(new KeyPress());
 		frame.add(panel);
 		
@@ -107,7 +111,7 @@ public class GUI implements ActionListener {
 		panel.add(screenBackground);
 		
 		// Special Buttons: (Need custom font scaling or otherwise)
-		buttonInverse = new JButton("\u215F\uD835\uDCCD"); // "1/x"
+		buttonInverse = new JButton(buttonNames[21]);
 		buttonInverse.setBounds(30, 180, 60, 60);
 		buttonInverse.setFont(new Font("Sans", Font.PLAIN, 24));
 		buttonInverse.setBorder(null);
@@ -118,7 +122,7 @@ public class GUI implements ActionListener {
 		buttonInverse.setFocusable(false);
 		panel.add(buttonInverse);
 		
-		buttonCopy = new JButton("\uD83D\uDCCB"); // Clipboard Emoji
+		buttonCopy = new JButton(buttonNames[22]);
 		buttonCopy.setBounds(390, 180, 60, 60);
 		buttonCopy.setFont(new Font("Sans", Font.PLAIN, 30));
 		buttonCopy.setBorder(null);
@@ -129,7 +133,7 @@ public class GUI implements ActionListener {
 		buttonCopy.setFocusable(false);
 		panel.add(buttonCopy);
 		
-		buttonDelete = new JButton("DEL");
+		buttonDelete = new JButton(buttonNames[23]);
 		buttonDelete.setBounds(300, 270, 60, 60);
 		buttonDelete.setFont(new Font("Sans", Font.PLAIN, 24));
 		buttonDelete.setBorder(null);
@@ -140,7 +144,7 @@ public class GUI implements ActionListener {
 		buttonDelete.setFocusable(false);
 		panel.add(buttonDelete);
 		
-		buttonAllClear = new JButton("AC");
+		buttonAllClear = new JButton(buttonNames[24]);
 		buttonAllClear.setBounds(390, 270, 60, 60);
 		buttonAllClear.setFont(new Font("Sans", Font.PLAIN, 24));
 		buttonAllClear.setBorder(null);
@@ -152,34 +156,30 @@ public class GUI implements ActionListener {
 		panel.add(buttonAllClear);
 		
 		// Normal Buttons:
-		createButton(buttonOpeningBracket, "(", 120, 180);
-		createButton(buttonClosingBracket, ")", 210, 180);
-		createButton(buttonPi, "\u03C0", 300, 180);
-		createButton(button7, "7", 30, 270);
-		createButton(button8, "8", 120, 270);
-		createButton(button9, "9", 210, 270);
-		createButton(button4, "4", 30, 360);
-		createButton(button5, "5", 120, 360);
-		createButton(button6, "6", 210, 360);
-		createButton(buttonMultiply, "\u00D7", 300, 360);
-		createButton(buttonDivide, "\u00F7", 390, 360);
-		createButton(button1, "1", 30, 450);
-		createButton(button2, "2", 120, 450);
-		createButton(button3, "3", 210, 450);
-		createButton(buttonAdd, "+", 300, 450);
-		createButton(buttonSubtract, "\u2212", 390, 450);
-		createButton(button0, "0", 30, 540);
-		createButton(buttonDecimal, "\u00B7", 120, 540);
-		createButton(buttonPower, "\uD835\uDCCD\u02B8", 210, 540);
-		createButton(buttonSqrt, "\u221A", 300, 540);
-		createButton(buttonEvaluate, "=", 390, 540);
+		createButton(buttonOpeningBracket, buttonNames[10], 120, 180);
+		createButton(buttonClosingBracket, buttonNames[11], 210, 180);
+		createButton(buttonPi, buttonNames[20], 300, 180);
+		createButton(button7, buttonNames[7], 30, 270);
+		createButton(button8, buttonNames[8], 120, 270);
+		createButton(button9, buttonNames[9], 210, 270);
+		createButton(button4, buttonNames[4], 30, 360);
+		createButton(button5, buttonNames[5], 120, 360);
+		createButton(button6, buttonNames[6], 210, 360);
+		createButton(buttonMultiply, buttonNames[15], 300, 360);
+		createButton(buttonDivide, buttonNames[16], 390, 360);
+		createButton(button1, buttonNames[1], 30, 450);
+		createButton(button2, buttonNames[2], 120, 450);
+		createButton(button3, buttonNames[3], 210, 450);
+		createButton(buttonAdd, buttonNames[12], 300, 450);
+		createButton(buttonSubtract, buttonNames[13], 390, 450);
+		createButton(button0, buttonNames[0], 30, 540);
+		createButton(buttonDecimal, buttonNames[18], 120, 540);
+		createButton(buttonPower, buttonNames[17], 210, 540);
+		createButton(buttonSqrt, buttonNames[19], 300, 540);
+		createButton(buttonEvaluate, buttonNames[14], 390, 540);
 		
-		frame.setLocationRelativeTo(null); // Positions window at 0,0 (centre) of screen.
+		frame.setLocationRelativeTo(null); // Positions the window at the centre of the screen.
 		frame.setVisible(true);
-	}
-	
-	public static void main() {
-		new GUI();
 	}
 	
 	public void createButton(JButton button, String text, int x, int y) {
@@ -197,8 +197,7 @@ public class GUI implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String buttonText = e.getActionCommand();
-		int buttonID = Arrays.asList(buttonNames).indexOf(buttonText);
+		int buttonID = Arrays.asList(buttonNames).indexOf(e.getActionCommand());
 		CalculatorInput.input(buttonID);
 	}
 }

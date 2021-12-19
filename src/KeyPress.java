@@ -1,15 +1,11 @@
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class KeyPress extends KeyAdapter {
-	ActionEvent a;
-	long time;
-	
 	public void keyPressed(KeyEvent e) {
-		char c = e.getKeyChar();
+		char keyID = e.getKeyChar();
 
-		switch(c) {
+		switch(keyID) {
 			case '0':
 				CalculatorInput.input(0);
 				break;

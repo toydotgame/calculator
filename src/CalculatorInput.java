@@ -39,9 +39,13 @@ public class CalculatorInput {
 					Calculator.answer = "";
 					Calculator.delete();
 					break;
-				default:
-					Calculator.allClear();
+				case 24:
 					Calculator.finished = false;
+					Calculator.allClear();
+					break;
+				default:
+					Calculator.finished = false;
+					Calculator.allClear();
 					Calculator.equation += functions[buttonID];
 					Calculator.refresh();
 					break;
