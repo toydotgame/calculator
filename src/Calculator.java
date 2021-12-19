@@ -96,7 +96,7 @@ public class Calculator {
 	}
 	
 	static void addPower() {
-		int length = equation.replaceFirst("\\d+\\D*$", "").length();
+		int length = equation.replaceFirst("\\d+\\D*.\\($", "").length();
 		int lastNonDigit = equation.length() == length ? 0 : length;
 		
 		equation = equation.substring(0, lastNonDigit) + "Math.pow(" + equation.substring(lastNonDigit, equation.length()) + ",";
